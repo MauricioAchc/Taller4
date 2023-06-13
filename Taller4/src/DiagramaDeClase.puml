@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+class Pokemon{
+-id : int
+-nombre: String
+-etapa: String
+-evolucionSiguiente: String
+-evolucionPrevia: String
+-tipo1: String
+-tipo2: String
++Pokemon(id:int,nombre:String,etapa:String,evolucionSiguiente:String,evolucionPrevia:String,tipo1:String,tipo2:String)
++get´s()
++set´s()
+
+}
+class NodoPokemon{
+-pokemon: Pokemon
+-siguiente: NodoPokemon
+-anterior: NodoPokemon
++NodoPokemon(pokemon:Pokemon)
++get´s()
++set´s()
+}
+
+class ListaPokemon{
+-cabeza: NodoPokemon
++ListaPokemon()
++get´s()
++set´s()
+}
+
+interface SistemaPokedex{
++desplegarPokemonSegunRango(): String[]
++desplegarPokemonAlfabetico(): String[]
++desplegarPokemonDadoTipo(): String[]
++desplegarPokemonPrimeraEvolucion(): String[]
++busquedaPersonalizada(): Pokemon
++salirMenuPrincipal(): void
+}
+class SistemaPokedexImpl{
+-listaPokemon: ListaPokemon
++SistemaPokedexImpl()
+}
+
+NodoPokemon "1" --> "2" NodoPokemon
+ListaPokemon o-- NodoPokemon
+SistemaPokedexImpl ..|> SistemaPokedex
+SistemaPokedexImpl --> ListaPokemon
+NodoPokemon --> Pokemon
+
+
+@enduml
