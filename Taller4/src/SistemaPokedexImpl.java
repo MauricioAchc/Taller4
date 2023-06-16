@@ -7,6 +7,8 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
 
     public String desplegarPokemonSegunRango(){
 
+
+
         return null;
     }
 
@@ -20,6 +22,7 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     }
 
     public String desplegarPokemonPrimeraEvolucion(){
+
 
         return null;
     }
