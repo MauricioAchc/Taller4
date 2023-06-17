@@ -9,11 +9,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         SistemaPokedex sistema = new SistemaPokedexImpl();
 
+        cargarPokemons(sistema);
         menuPrincipal(sistema);
 
     }
 
-    public static void cargarArchivo(SistemaPokedex sistema) throws IOException{
+    public static void cargarPokemons(SistemaPokedex sistema) throws IOException{
         ArchivoEntrada archivoEntrada = new ArchivoEntrada("kanto.txt");
         while(!archivoEntrada.isEndFile()){
             Registro registroEntrada = archivoEntrada.getRegistro();
@@ -24,11 +25,9 @@ public class Main {
             String evolucionPrevia = registroEntrada.getString();
             String tipo1 = registroEntrada.getString();
             String tipo2 = registroEntrada.getString();
-
-
-
-
+            sistema.regitrarPokemons(id,nombre,etapa,evolucionSiguiente,evolucionPrevia,tipo1,tipo2);
         }
+        archivoEntrada.close();
     }
 
 
@@ -67,17 +66,8 @@ public class Main {
             menu = menuInt;
 
             switch (menu){
-                case 1 -> desplegarPokemonOrdenado(sistema);
                 case 2 -> desplegarPokemonDelSistema(sistema);
-                case 3 -> desplegarPokemonSegunTipo(sistema);
-                case 4 -> desplegarPokemonPrimeraEvolucion(sistema);
-                case 5 -> subMenubusquedaPersonalizada(sistema);
-                case 6 -> salir(sistema);
             }
-
-
-
-
         }
     }
 
@@ -88,11 +78,15 @@ public class Main {
     }
 
     public static  void desplegarPokemonDelSistema(SistemaPokedex sistema){
-        String pokemons = sistema.desplegarPokemonAlfabetico();
-        StdOut.println("-------------> Despliegue de los pokémons almacenados en el sistema, ordenados\n" +
-                "alfabéticamente");
 
-
+        String[] pokemons = sistema.desplegarPokemonAlfabetico();
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
     }
 
 

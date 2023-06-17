@@ -3,10 +3,10 @@ public class NodoPokemon {
     private NodoPokemon siguiente;
     private NodoPokemon anterior;
 
-    public NodoPokemon(Pokemon pokemon, NodoPokemon siguiente, NodoPokemon anterior) {
+    public NodoPokemon(Pokemon pokemon) {
         this.pokemon = pokemon;
-        this.siguiente = siguiente;
-        this.anterior = anterior;
+        this.siguiente = null;
+        this.anterior = null;
     }
 
     public Pokemon getPokemon() {
