@@ -36,11 +36,11 @@ public class Main {
 
         while(menu != 6){
             StdOut.println("------------------------>Bienvenido a la Pokedex<------------------------");
-            StdOut.println("[1]  Desplegar Pokemon ordenados según id");
-            StdOut.println("[2]  Desplegar todos los pokémons del sistema");
-            StdOut.println("[3]  Desplegar pokémon según tipo");
+            StdOut.println("[1]  Desplegar Pokemon ordenados según id en orden decreciente");
+            StdOut.println("[2]  Desplegar todos los pokémons del sistema ordenados alfabéticamente");
+            StdOut.println("[3]  Desplegar pokémon según tipo en particular");
             StdOut.println("[4]  Desplegar los pokémons en su primera evolución");
-            StdOut.println("[5]  Busqueda personalizada");
+            StdOut.println("[5]  Búsqueda personalizada");
             StdOut.println("[6]  salir del sistema");
             StdOut.println("Ingrese una opción por favor:");
             String menuStr = StdIn.readLine().strip();
@@ -66,18 +66,26 @@ public class Main {
             menu = menuInt;
 
             switch (menu){
-                case 2 -> desplegarPokemonDelSistema(sistema);
+                case 1 -> desplegarPokemonOrdenadoSegunRango(sistema);
+                case 2 -> desplegarPokemonDelSistemaAlfabeticamente(sistema);
+                case 6 ->salir(sistema);
             }
         }
     }
 
-    public static  void desplegarPokemonOrdenado(SistemaPokedex sistema){
-        String pokemons = sistema.desplegarPokemonSegunRango();
-        StdOut.println("-------------> Despliegue de los pokémons ordenado según su id");
+    public static  void desplegarPokemonOrdenadoSegunRango(SistemaPokedex sistema){
+        String[] pokemons = sistema.desplegarPokemonSegunRango();
 
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
     }
 
-    public static  void desplegarPokemonDelSistema(SistemaPokedex sistema){
+    public static  void desplegarPokemonDelSistemaAlfabeticamente(SistemaPokedex sistema){
 
         String[] pokemons = sistema.desplegarPokemonAlfabetico();
         if(pokemons == null || pokemons.length == 0){
@@ -90,7 +98,7 @@ public class Main {
     }
 
 
-    public static  void desplegarPokemonSegunTipo(SistemaPokedex sistema){
+    public static  void desplegarPokemonSegunDadoTipo(SistemaPokedex sistema){
         String pokemons = sistema.desplegarPokemonDadoTipo();
         StdOut.println("-------------> Despliegue de los pokémons dado un tipo en particular");
 
@@ -151,6 +159,8 @@ public class Main {
 
 
     public static void salir(SistemaPokedex sistema) throws  IOException{
+
+
 
     }
 

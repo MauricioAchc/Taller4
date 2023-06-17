@@ -12,8 +12,14 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return this.listaPokemon.agregarPokemon(nuevoPokemon);
     }
 
-    public String desplegarPokemonSegunRango(){
-        return null;
+    public String[] desplegarPokemonSegunRango(){
+
+        this.listaPokemon.ordenarPokemonsId();
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            listaPokemon[i] = String.valueOf(this.listaPokemon.obtenerPokemon(i).getId());
+        }
+        return listaPokemon;
     }
 
     public String[] desplegarPokemonAlfabetico(){
@@ -38,5 +44,11 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     }
 
     public void salirMenuPrincipal(){
+    }
+
+    public void salir(){
+
+
+
     }
 }

@@ -63,6 +63,45 @@ public class ListaPokemon {
             }
             aux1 = aux1.getSiguiente();
         }
+
+
+
+
+    }
+    public void ordenarPokemonsId(){
+        int t =1, c=1;
+        NodoPokemon aux = this.cabeza;
+        while (aux.getSiguiente() != null){
+            aux = aux.getSiguiente();
+            c++;
+        }
+
+
+
+
+
+        /**
+        NodoPokemon jj,x,y,z,aux = null;
+        jj = this.cabeza;
+        while(jj.getSiguiente()!= null){
+            x = jj;
+            y = jj.getSiguiente();
+            z = jj.getSiguiente().getSiguiente();
+            if(x.getPokemon().getId() > y.getPokemon().getId()){
+                aux = x;
+                jj = y;
+                aux = jj.getSiguiente();
+                z = aux.getSiguiente();
+            }
+            if( aux == this.cabeza){
+                this.cabeza = y;
+            }
+            jj = jj.getSiguiente();
+        }
+         */
+
+
+
     }
 
     public NodoPokemon getCabeza() {
