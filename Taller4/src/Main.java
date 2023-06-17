@@ -74,12 +74,19 @@ public class Main {
     }
 
     public static  void desplegarPokemonOrdenadoSegunRango(SistemaPokedex sistema){
-        String[] pokemons = sistema.desplegarPokemonSegunRango();
 
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
-        }else{
-            for (int i = 0; i < pokemons.length; i++) {
+        StdOut.println("Ingrese el rango de inicio: ");
+        int inicio = StdIn.readInt();
+
+        StdOut.println("Ingrese el rango de fin: ");
+        int fin = StdIn.readInt();
+
+        for (int i = inicio; i <= fin; i++) {
+            String[] pokemons = sistema.desplegarPokemonSegunRango();
+
+            if(pokemons == null || pokemons.length == 0){
+                StdOut.println("No hay pokémons en el sistema");
+            }else{
                 StdOut.println(pokemons[i]);
             }
         }
@@ -99,9 +106,17 @@ public class Main {
 
 
     public static  void desplegarPokemonSegunDadoTipo(SistemaPokedex sistema){
-        String pokemons = sistema.desplegarPokemonDadoTipo();
         StdOut.println("-------------> Despliegue de los pokémons dado un tipo en particular");
+        String tipo = StdIn.readLine();
 
+        String[] pokemons = sistema.desplegarPokemonDadoTipo(tipo);
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
 
     }
 

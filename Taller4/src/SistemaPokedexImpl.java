@@ -17,7 +17,7 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         this.listaPokemon.ordenarPokemonsId();
         String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
         for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
-            listaPokemon[i] = String.valueOf(this.listaPokemon.obtenerPokemon(i).getId());
+            listaPokemon[i] = String.valueOf(this.listaPokemon.obtenerPokemon(i).getNombre());
         }
         return listaPokemon;
     }
@@ -31,8 +31,14 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         }
         return listaPokemon;
     }
-    public String desplegarPokemonDadoTipo(){
-        return null;
+    public String[] desplegarPokemonDadoTipo(String tipo){
+
+        this.listaPokemon.buscarPokemonTipo(tipo);
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
+        }
+        return listaPokemon;
     }
 
     public String desplegarPokemonPrimeraEvolucion(){
@@ -47,8 +53,5 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     }
 
     public void salir(){
-
-
-
     }
 }

@@ -63,21 +63,24 @@ public class ListaPokemon {
             }
             aux1 = aux1.getSiguiente();
         }
-
-
-
-
     }
     public void ordenarPokemonsId(){
-        int t =1, c=1;
-        NodoPokemon aux = this.cabeza;
-        while (aux.getSiguiente() != null){
-            aux = aux.getSiguiente();
-            c++;
+
+        NodoPokemon aux1 = this.cabeza;
+
+        for (int i = 0; i < this.cantPokemons-1; i++) {
+            NodoPokemon aux2 = aux1.getSiguiente();
+            for (int j = i+1; j < this.cantPokemons; j++) {
+                Pokemon pokemon1 = aux1.getPokemon();
+                Pokemon pokemon2 = aux2.getPokemon();
+                if (pokemon1.getId() > pokemon2.getId()){
+                    aux1.setPokemon(pokemon2);
+                    aux2.setPokemon(pokemon1);
+                }
+                aux2 = aux2.getSiguiente();
+            }
+            aux1 = aux1.getSiguiente();
         }
-
-
-
 
 
         /**
@@ -99,9 +102,20 @@ public class ListaPokemon {
             jj = jj.getSiguiente();
         }
          */
+    }
 
+    public boolean buscarPokemonTipo(String tipo){
 
-
+        if (this.cabeza == null){
+            return false;
+        }
+        NodoPokemon actual = this.cabeza;
+        while (actual != null){
+            if (actual.getPokemon().getTipo1().equalsIgnoreCase(tipo)){
+            }
+            actual = actual.getSiguiente();
+        }
+        return false;
     }
 
     public NodoPokemon getCabeza() {
