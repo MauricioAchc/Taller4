@@ -11,7 +11,6 @@ public class Main {
 
         cargarPokemons(sistema);
         menuPrincipal(sistema);
-
     }
 
     public static void cargarPokemons(SistemaPokedex sistema) throws IOException{
@@ -29,7 +28,6 @@ public class Main {
         }
         archivoEntrada.close();
     }
-
 
     public static void menuPrincipal(SistemaPokedex sistema) throws  IOException{
         int menu = 0;
@@ -68,6 +66,8 @@ public class Main {
             switch (menu){
                 case 1 -> desplegarPokemonOrdenadoSegunRango(sistema);
                 case 2 -> desplegarPokemonDelSistemaAlfabeticamente(sistema);
+                case 3 -> desplegarPokemonSegunDadoTipo(sistema);
+                case 4 -> desplegarPokemonPrimeraEvolucion(sistema);
                 case 6 ->salir(sistema);
             }
         }
@@ -104,9 +104,8 @@ public class Main {
         }
     }
 
-
     public static  void desplegarPokemonSegunDadoTipo(SistemaPokedex sistema){
-        StdOut.println("-------------> Despliegue de los pokémons dado un tipo en particular");
+        StdOut.println("Escriba el tipo del pokémon a buscar: ");
         String tipo = StdIn.readLine();
 
         String[] pokemons = sistema.desplegarPokemonDadoTipo(tipo);
@@ -120,17 +119,17 @@ public class Main {
 
     }
 
-
     public static  void desplegarPokemonPrimeraEvolucion(SistemaPokedex sistema){
-        String pokemons = sistema.desplegarPokemonPrimeraEvolucion();
-        StdOut.println("-------------> Despliegue de los pokémonsprimera evolución, ordenados según su id en orden\n" +
-                "decreciente");
 
-
-
+        String[] pokemons = sistema.desplegarPokemonPrimeraEvolucion();
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
     }
-
-
 
     public static void subMenubusquedaPersonalizada(SistemaPokedex sistema){
         int opcionInt = 0;
@@ -163,34 +162,12 @@ public class Main {
                 case 1 -> busquedaPersonalizada(sistema);
                 case 2 -> StdOut.println("\nVolviendo al menú anterior...\n");
             }
-
         }
     }
 
-
     public static void busquedaPersonalizada(SistemaPokedex sistema){
-
     }
-
 
     public static void salir(SistemaPokedex sistema) throws  IOException{
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

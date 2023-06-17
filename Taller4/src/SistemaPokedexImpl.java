@@ -14,7 +14,7 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
 
     public String[] desplegarPokemonSegunRango(){
 
-        this.listaPokemon.ordenarPokemonsId();
+        this.listaPokemon.ordenarPokemonsIdCreciente();
         String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
         for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
             listaPokemon[i] = String.valueOf(this.listaPokemon.obtenerPokemon(i).getNombre());
@@ -33,16 +33,27 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     }
     public String[] desplegarPokemonDadoTipo(String tipo){
 
-        this.listaPokemon.buscarPokemonTipo(tipo);
+        this.listaPokemon.ordenarPokemons();
         String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
         for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
-            listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
+            Pokemon pokemon = this.listaPokemon.obtenerPokemon(i);
+            if (pokemon != null && pokemon.getTipo1().equalsIgnoreCase(tipo) || pokemon != null && pokemon.getTipo2().equalsIgnoreCase(tipo)){
+                listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
+            }
         }
         return listaPokemon;
     }
 
-    public String desplegarPokemonPrimeraEvolucion(){
-        return null;
+    public String[] desplegarPokemonPrimeraEvolucion(){
+
+        this.listaPokemon.ordenarPokemonsIdDecreciente();
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            if (this.listaPokemon.obtenerPokemon(i).getEtapa().equalsIgnoreCase("Primera Evolucion")){
+                listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
+            }
+        }
+        return listaPokemon;
     }
 
     public Pokemon busquedaPersonalizada(){

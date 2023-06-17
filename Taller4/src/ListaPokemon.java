@@ -64,7 +64,7 @@ public class ListaPokemon {
             aux1 = aux1.getSiguiente();
         }
     }
-    public void ordenarPokemonsId(){
+    public void ordenarPokemonsIdCreciente(){
 
         NodoPokemon aux1 = this.cabeza;
 
@@ -81,27 +81,25 @@ public class ListaPokemon {
             }
             aux1 = aux1.getSiguiente();
         }
+    }
 
+    public void ordenarPokemonsIdDecreciente(){
 
-        /**
-        NodoPokemon jj,x,y,z,aux = null;
-        jj = this.cabeza;
-        while(jj.getSiguiente()!= null){
-            x = jj;
-            y = jj.getSiguiente();
-            z = jj.getSiguiente().getSiguiente();
-            if(x.getPokemon().getId() > y.getPokemon().getId()){
-                aux = x;
-                jj = y;
-                aux = jj.getSiguiente();
-                z = aux.getSiguiente();
+        NodoPokemon aux1 = this.cabeza;
+
+        for (int i = 0; i < this.cantPokemons-1; i++) {
+            NodoPokemon aux2 = aux1.getSiguiente();
+            for (int j = i+1; j < this.cantPokemons; j++) {
+                Pokemon pokemon1 = aux1.getPokemon();
+                Pokemon pokemon2 = aux2.getPokemon();
+                if (pokemon1.getId() < pokemon2.getId()){
+                    aux1.setPokemon(pokemon2);
+                    aux2.setPokemon(pokemon1);
+                }
+                aux2 = aux2.getSiguiente();
             }
-            if( aux == this.cabeza){
-                this.cabeza = y;
-            }
-            jj = jj.getSiguiente();
+            aux1 = aux1.getSiguiente();
         }
-         */
     }
 
     public boolean buscarPokemonTipo(String tipo){
@@ -111,7 +109,8 @@ public class ListaPokemon {
         }
         NodoPokemon actual = this.cabeza;
         while (actual != null){
-            if (actual.getPokemon().getTipo1().equalsIgnoreCase(tipo)){
+            if (actual.getPokemon().getTipo1().equals(tipo) || actual.getPokemon().getTipo2().equals(tipo)){
+                return true;
             }
             actual = actual.getSiguiente();
         }
