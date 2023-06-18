@@ -13,7 +13,6 @@ public class Main {
         menuPrincipal(sistema);
     }
 
-
     //region LECTURA DE ARCHIVOS.
 
     /**
@@ -37,8 +36,6 @@ public class Main {
         archivoEntrada.close();
     }
 
-
-
     /**
      * Subprograma que lleva al menu principal al usuario.
      * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
@@ -48,9 +45,9 @@ public class Main {
         int menu = 0;
 
         while(menu != 6){
-            StdOut.println("------------------------>Bienvenido a la Pokedex<------------------------");
-            StdOut.println("[1]  Desplegar Pokemon ordenados según id en orden decreciente");
-            StdOut.println("[2]  Desplegar todos los pokémons del sistema ordenados alfabéticamente");
+            StdOut.println("------------------------>Bienvenido a la Pokedex<------------------------\n");
+            StdOut.println("[1]  Desplegar Pokemon según rango");
+            StdOut.println("[2]  Desplegar todos los pokémons del sistema");
             StdOut.println("[3]  Desplegar pokémon según tipo en particular");
             StdOut.println("[4]  Desplegar los pokémons en su primera evolución");
             StdOut.println("[5]  Búsqueda personalizada");
@@ -84,36 +81,38 @@ public class Main {
                 case 3 -> desplegarPokemonSegunDadoTipo(sistema);
                 case 4 -> desplegarPokemonPrimeraEvolucion(sistema);
                 case 5 -> subMenubusquedaPersonalizada(sistema);
-                case 6 ->salir(sistema);
+                case 6 ->salir();
             }
         }
     }
-
 
     /**
      * Subprograma que permite el despliegue de los pokemons ordenados según el rango.
      * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
      */
-
     public static  void desplegarPokemonOrdenadoSegunRango(SistemaPokedex sistema){
 
+        StdOut.println("------------------------>Rango (1-30)<------------------------");
         StdOut.println("Ingrese el rango de inicio: ");
-        int inicio = StdIn.readInt();
+        int inicio = StdIn.readInt() -1;
 
         StdOut.println("Ingrese el rango de fin: ");
-        int fin = StdIn.readInt();
+        int fin = StdIn.readInt() - 1;
 
-        for (int i = inicio; i <= fin; i++) {
-            String[] pokemons = sistema.desplegarPokemonSegunRango();
+        if (inicio >= 0 && fin <= 29 ){
+            for (int i = inicio; i <= fin; i++) {
+                String[] pokemons = sistema.desplegarPokemonSegunRango();
 
-            if(pokemons == null || pokemons.length == 0){
-                StdOut.println("No hay pokémons en el sistema");
-            }else{
-                StdOut.println(pokemons[i]);
+                if(pokemons == null || pokemons.length == 0){
+                    StdOut.println("No hay pokémons en el sistema");
+                }else{
+                    StdOut.println(pokemons[i]);
+                }
             }
+        }else {
+            StdOut.println("Rango ingresado invalido!...Volviendo al menú anterior\n");
         }
     }
-
 
     /**
      * Subprograma que permite el despliegue de los pokemons ordenados alfabeticamente.
@@ -131,7 +130,6 @@ public class Main {
         }
     }
 
-
     /**
      * Subprograma que permite el despliegue de los pokemons segun el tipo de este.
      * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
@@ -140,30 +138,31 @@ public class Main {
         StdOut.println("Escriba el tipo del pokémon a buscar: ");
         String tipo = StdIn.readLine();
 
-        String[] pokemons = sistema.desplegarPokemonDadoTipo(tipo);
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
-        }else{
-            for (int i = 0; i < pokemons.length; i++) {
-                StdOut.println(pokemons[i]);
-            }
-        }
+        if (sistema.existepokemonTipo(tipo)){
 
+            String[] pokemons = sistema.desplegarPokemonDadoTipo(tipo);
+
+            for (String pokemon : pokemons){
+                if (pokemon!= null){
+                    StdOut.println(pokemon);
+                }
+            }
+        }else{
+            StdOut.println("Tipo del pokémon no encontrado!...Volviendo al menú anterior"+"\n");
+        }
     }
 
     /**
      * Subprograma que permite el despliegue de los pokemons en su primera evolución.
      * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
      */
-
     public static  void desplegarPokemonPrimeraEvolucion(SistemaPokedex sistema){
 
         String[] pokemons = sistema.desplegarPokemonPrimeraEvolucion();
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
-        }else{
-            for (int i = 0; i < pokemons.length; i++) {
-                StdOut.println(pokemons[i]);
+
+        for (String pokemon : pokemons){
+            if (pokemon != null){
+                StdOut.println(pokemon);
             }
         }
     }
@@ -208,7 +207,6 @@ public class Main {
         }
     }
 
-
     /**
      * Subprograma que permite obtener los nombres de los pokemons.
      * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
@@ -218,50 +216,19 @@ public class Main {
         StdOut.println("Escriba el nombre del pokémon a buscar: ");
         String nombre = StdIn.readLine();
 
-        String[] pokemons = sistema.obtenerPokemonNombre(nombre);
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
-        }else{
-            for (int i = 0; i < pokemons.length; i++) {
-                StdOut.println(pokemons[i]);
-            }
-        }
+        if (sistema.existepokemonNombre(nombre)){
 
-        int opcionInt = 0;
+            String[] pokemons = sistema.obtenerPokemonNombre(nombre);
 
-        while(opcionInt != 1){
-            StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
-            StdOut.println("¿desplegar información sobre una de sus evoluciones?.");
-            StdOut.print("Ingrese su opción si(igual a 0), no(igual a 1): ");
-            String opcionStr = StdIn.readLine();
-
-            while (true){
-                try{
-                    opcionInt = Integer.parseInt(opcionStr);
-                    if ( 0 <= opcionInt && opcionInt <= 1){
-                        break;
-                    }else{
-                        StdOut.println("Error, la opción ingresada no existe");
-                        StdOut.print("Ingrese su opción nuevamente: ");
-                        opcionStr = StdIn.readString();
-                    }
-                }catch(Exception e){
-                    StdOut.println("Error, la opción ingresada no existe");
-                    StdOut.print("Ingrese su opción nuevamente: ");
-                    opcionStr = StdIn.readString();
+            for (String pokemon : pokemons){
+                if (pokemon!= null){
+                    StdOut.println(pokemon + "\n");
                 }
             }
-            switch (opcionInt) {
-                case 0 -> desplegarInformacionSobreEvolucionSiguiente(sistema);
-                case 1 -> StdOut.println("\nVolviendo al menú anterior...\n");
-            }
-
+        }else{
+            StdOut.println("Nombre el pokémon no encontrado!"+"\n");
         }
-
-
     }
-
-
 
     /**
      * Subprograma que permite obtener los id de los pokemons y lleva a un submenu para desplegar las evoluciones de estos.
@@ -269,79 +236,27 @@ public class Main {
      */
     public static void obtenerPokemonId(SistemaPokedex sistema){
 
-
         StdOut.println("Escriba el id del pokémon a buscar: ");
-        String id = StdIn.readLine();
+        int id = StdIn.readInt();
 
-        String[] pokemons = sistema.obtenerPokemonId(Integer.parseInt(id));
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
-        }else{
-            for (int i = 0; i < pokemons.length; i++) {
-                StdOut.println(pokemons[i]);
-            }
-        }
+        if (sistema.existepokemonId(id)){
 
+            String[] pokemons = sistema.obtenerPokemonId(id);
 
-        int opcionInt = 0;
-
-        while(opcionInt != 1){
-            StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
-            StdOut.println("¿Quieres desplegar información sobre una de sus evoluciones?.");
-            StdOut.print("Ingrese su opción si(igual a 0), no(igual a 1): ");
-            String opcionStr = StdIn.readLine();
-
-            while (true){
-                try{
-                    opcionInt = Integer.parseInt(opcionStr);
-                    if ( 0 <= opcionInt && opcionInt <= 1){
-                        break;
-                    }else{
-                        StdOut.println("Error, la opción ingresada no existe");
-                        StdOut.print("Ingrese su opción nuevamente: ");
-                        opcionStr = StdIn.readString();
-                    }
-                }catch(Exception e){
-                    StdOut.println("Error, la opción ingresada no existe");
-                    StdOut.print("Ingrese su opción nuevamente: ");
-                    opcionStr = StdIn.readString();
+            for (String pokemon : pokemons){
+                if (pokemon!= null){
+                    StdOut.println(pokemon + "\n");
                 }
             }
-            if (opcionInt == 0){
-                sistema.desplegarPokemonPrimeraEvolucion();
-                sistema.desplegarSegundaEvolucion();
-            }
-        }
-
-
-
-
-
-    }
-
-
-    /**
-     * Subprograma que permite desplegar la información sobre la evolución siguiente del pokemon.
-     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
-     */
-    public static void desplegarInformacionSobreEvolucionSiguiente(SistemaPokedex sistema){
-
-        String[] pokemons = sistema.desplegarSegundaEvolucion();
-        if(pokemons == null || pokemons.length == 0){
-            StdOut.println("No hay pokémons en el sistema");
         }else{
-            for (int i = 0; i < pokemons.length; i++) {
-                StdOut.println(pokemons[i]);
-            }
+            StdOut.println("Id el pokémon no encontrado!"+"\n");
         }
-
     }
-
 
     /**
      * Subprograma que salir del sistema.
-     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
      */
-    public static void salir(SistemaPokedex sistema) throws  IOException{
+    public static void salir(){
+        StdOut.println("Apagando pokedex...Hasta Pronto!");
     }
 }

@@ -1,11 +1,11 @@
-public class SistemaPokedexImpl implements  SistemaPokedex{
+import ucn.StdOut;
 
+public class SistemaPokedexImpl implements  SistemaPokedex{
 
     /**
      * Corresponde a la lista de los pokemons del sistema.
      */
     private  ListaPokemon listaPokemon;
-
 
     /**
      * Corresponde al constructor de la clase SistemaPokedexImpl.
@@ -13,8 +13,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     public SistemaPokedexImpl() {
         this.listaPokemon = new ListaPokemon();
     }
-
-
 
     /**
      * Método que registra pokemons en el sistema.
@@ -34,13 +32,10 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return this.listaPokemon.agregarPokemon(nuevoPokemon);
     }
 
-
-
     /**
      * Método que despliega los pokemons según el rango.
      * @return "listaPokemon".
      */
-
     public String[] desplegarPokemonSegunRango(){
 
         this.listaPokemon.ordenarPokemonsIdCreciente();
@@ -50,9 +45,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         }
         return listaPokemon;
     }
-
-
-
 
     /**
      * Método que despliega los pokemons del sistema en un orden alfabetico.
@@ -67,8 +59,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         }
         return listaPokemon;
     }
-
-
 
     /**
      * Método que despliega los pokemons del sistema dado un tipo en particular.
@@ -88,8 +78,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return listaPokemon;
     }
 
-
-
     /**
      * Método que despliega los pokemons del sistema en su primera evolución.
      * @return "listaPokemon".
@@ -105,27 +93,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         }
         return listaPokemon;
     }
-
-
-
-    /**
-     * Método que despliega los pokemons del sistema en su segunda evolución.
-     * @return "listaPokemon".
-     */
-    public String[] desplegarSegundaEvolucion(){
-        this.listaPokemon.ordenarPokemons();
-        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
-        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
-            if (this.listaPokemon.obtenerPokemon(i).getEvolucionSiguiente().equalsIgnoreCase("Segunda Evolucion")){
-                listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
-            }
-        }
-        return listaPokemon;
-
-
-    }
-
-
 
     /**
      * Método que obtiene los nombres de los pokemons del sistema.
@@ -149,8 +116,6 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return listaPokemon;
     }
 
-
-
     /**
      * Método que obtiene los id de los pokemons del sistema.
      * @param id Corresponde a la id de los pokemons dentro del sistema.
@@ -172,27 +137,42 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return listaPokemon;
     }
 
-
-
     /**
-     * Método busca de forma personalizada los pokemons .
-     * @return null.
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param nombre Corresponde al nombre del pokemon.
      */
-    public Pokemon busquedaPersonalizada(){
-        return null;
+    public boolean existepokemonNombre(String nombre){
+
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            if (this.listaPokemon.obtenerPokemon(i).getNombre().equalsIgnoreCase(nombre)){
+                return true;
+            }
+        }
+        return false;
     }
 
-
     /**
-     * Método permite salir del menu principal.
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param id Corresponde al id del pokemon.
      */
-    public void salirMenuPrincipal(){
+    public boolean existepokemonId(int id){
+
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            if (this.listaPokemon.obtenerPokemon(i).getId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
+    @Override
+    public boolean existepokemonTipo(String tipo) {
 
-    /**
-     * Método permite salir del sistema.
-     */
-    public void salir(){
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            if (this.listaPokemon.obtenerPokemon(i).getTipo1().equalsIgnoreCase(tipo) || this.listaPokemon.obtenerPokemon(i).getTipo2().equalsIgnoreCase(tipo)){
+                return true;
+            }
+        }
+        return false;
     }
 }

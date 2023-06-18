@@ -1,6 +1,5 @@
 public class ListaPokemon {
 
-
     /**
      * Entidad que representa al nodo del sistema.
      */
@@ -11,7 +10,6 @@ public class ListaPokemon {
      */
     private int cantPokemons;
 
-
     /**
      * Constructor de la clase ListaPokemon.
      */
@@ -19,9 +17,6 @@ public class ListaPokemon {
         this.cabeza = null;
         this.cantPokemons = 0;
     }
-
-
-
 
     /**
      * Método que agrega un pokemon al sistema.
@@ -55,8 +50,6 @@ public class ListaPokemon {
         return true;
     }
 
-
-
     /**
      * Método que obtiene el pokemon según su posición.
      * @param  posicion Corresponde a la posición en la que encuentra el pokemons.
@@ -73,12 +66,8 @@ public class ListaPokemon {
         return aux.getPokemon();
     }
 
-
-
     /**
      * Método que ordena los pokemons en el sistema.
-     * @param pokemon Corresponde al pokemons que se va ingresar.
-     * @return "true" si se agregó correctamente al sistema, o "false" si no se pudo arreglar.
      */
     public void ordenarPokemons(){
 
@@ -98,8 +87,6 @@ public class ListaPokemon {
             aux1 = aux1.getSiguiente();
         }
     }
-
-
 
     /**
      * Método que ordena los pokemons según la id en orden creciente dentro del sistema.
@@ -123,8 +110,6 @@ public class ListaPokemon {
         }
     }
 
-
-
     /**
      * Método que ordena los pokemons según la id en orden decreciente dentro del sistema.
      */
@@ -147,61 +132,11 @@ public class ListaPokemon {
         }
     }
 
-
-    /**
-     * Método que busca los pokemons según el tipo dentro del sistema.
-     */
-    public boolean buscarPokemonTipo(String tipo){
-
-        if (this.cabeza == null){
-            return false;
-        }
-        NodoPokemon actual = this.cabeza;
-        while (actual != null){
-            if (actual.getPokemon().getTipo1().equals(tipo) || actual.getPokemon().getTipo2().equals(tipo)){
-                return true;
-            }
-            actual = actual.getSiguiente();
-        }
-        return false;
-    }
-
-
-
-
-
-    /**
-     * Este método obtiene la cabeza del nodo dentro de la lista.
-     */
-    public NodoPokemon getCabeza() {
-        return cabeza;
-    }
-
-
-    /**
-     * Este método inserta la cabeza del nodo dentro de la lista.
-     */
-    public void setCabeza(NodoPokemon cabeza) {
-        this.cabeza = cabeza;
-    }
-
-
-
     /**
      * Este método obtiene la cantidad de pokemons de la lista.
-     * @return un entero con la cantidad de pokemons. Si no hay clientes retorna 0.
+     * @return Un entero con la cantidad de pokemons. Si no hay clientes retorna 0.
      */
     public int getCantPokemons() {
         return cantPokemons;
-    }
-
-
-
-
-    /**
-     * Este método inserta la cantidad de los pokemons dentro de la lista.
-     */
-    public void setCantPokemons(int cantPokemons) {
-        this.cantPokemons = cantPokemons;
     }
 }

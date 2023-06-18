@@ -1,7 +1,5 @@
 public interface SistemaPokedex {
 
-
-
     /**
      * Método que registra pokemons en el sistema.
      * @param id Corresponde al identificador del pokemon.
@@ -15,13 +13,11 @@ public interface SistemaPokedex {
      */
     public boolean regitrarPokemons(int id, String nombre, String etapa, String evolucionSiguiente, String evolucionPrevia, String tipo1, String tipo2);
 
-
     /**
      * Método que despliega los pokemons según el rango.
      * @return "listaPokemon".
      */
     public String[] desplegarPokemonSegunRango();
-
 
     /**
      * Método que despliega los pokemons del sistema en un orden alfabetico.
@@ -29,14 +25,12 @@ public interface SistemaPokedex {
      */
     public String[] desplegarPokemonAlfabetico();
 
-
     /**
      * Método que despliega los pokemons del sistema dado un tipo en particular.
      * @param tipo Corresponde al tipo del pokemon.
      * @return "listaPokemon".
      */
     public String[] desplegarPokemonDadoTipo(String tipo);
-
 
     /**
      * Método que despliega los pokemons del sistema en su primera evolución.
@@ -48,8 +42,6 @@ public interface SistemaPokedex {
      * Método que despliega los pokemons del sistema en su segunda evolución.
      * @return "listaPokemon".
      */
-    public String[] desplegarSegundaEvolucion();
-
 
     /**
      * Método que obtiene los nombres de los pokemons del sistema.
@@ -58,7 +50,6 @@ public interface SistemaPokedex {
      */
     public String[] obtenerPokemonNombre(String nombre);
 
-
     /**
      * Método que obtiene los id de los pokemons del sistema.
      * @param id Corresponde a la id de los pokemons dentro del sistema.
@@ -66,17 +57,21 @@ public interface SistemaPokedex {
      */
     public String[] obtenerPokemonId(int id);
 
-
+    /**
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param nombre Corresponde al nombre del pokemon.
+     */
+    public boolean existepokemonNombre(String nombre);
 
     /**
-     * Método que busca de forma personalizada los pokemons dentro del sistema.
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param id Corresponde al id del pokemon.
      */
-    public Pokemon busquedaPersonalizada();
-
-
+    public boolean existepokemonId(int id);
 
     /**
-     * Método que permite salir del menu principal dentro del sistema.
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param tipo Corresponde al tipo del pokemon.
      */
-    public void salirMenuPrincipal();
+    public boolean existepokemonTipo(String tipo);
 }

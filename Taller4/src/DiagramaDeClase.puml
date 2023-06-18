@@ -1,43 +1,54 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 class Pokemon{
--id : int
+-id: int
 -nombre: String
 -etapa: String
 -evolucionSiguiente: String
 -evolucionPrevia: String
 -tipo1: String
 -tipo2: String
-+Pokemon(id:int,nombre:String,etapa:String,evolucionSiguiente:String,evolucionPrevia:String,tipo1:String,tipo2:String)
++Pokemon(id: int, nombre: String, etapa: String, evolucionSiguiente: String, evolucionPrevia: String, tipo1: String, tipo2: String)
 +get´s()
 +set´s()
-
++toString(): String
 }
+
 class NodoPokemon{
 -pokemon: Pokemon
 -siguiente: NodoPokemon
 -anterior: NodoPokemon
-+NodoPokemon(pokemon:Pokemon)
++NodoPokemon(pokemon: Pokemon)
 +get´s()
 +set´s()
 }
 
 class ListaPokemon{
 -cabeza: NodoPokemon
--cantPokemons : int
+-cantPokemons: int
 +ListaPokemon()
++agregarPokemon(pokemon: Pokemon): boolean
++obtenerPokemon(posicion: int): Pokemon
++ordenarPokemons(): void
++ordenarPokemonsIdCreciente(): void
++ordenarPokemonsIdDecreciente(): void
 +get´s()
 +set´s()
 }
 
 interface SistemaPokedex{
++regitrarPokemons(id: int, nombre: String, etapa: String, evolucionSiguiente: String, evolucionPrevia: String, tipo1: String, tipo2: String) : boolean
 +desplegarPokemonSegunRango(): String[]
 +desplegarPokemonAlfabetico(): String[]
-+desplegarPokemonDadoTipo(): String[]
++desplegarPokemonDadoTipo(tipo: String): String[]
 +desplegarPokemonPrimeraEvolucion(): String[]
-+busquedaPersonalizada(): Pokemon
-+salirMenuPrincipal(): void
++obtenerPokemonNombre(nombre: String): String[]
++obtenerPokemonId(id: int): String[]
++existepokemonNombre(nombre: String): boolean
++existepokemonId(id: int): boolean
++existepokemonTipo(tipo: String): boolean
 }
+
 class SistemaPokedexImpl{
 -listaPokemon: ListaPokemon
 +SistemaPokedexImpl()
@@ -45,8 +56,8 @@ class SistemaPokedexImpl{
 
 NodoPokemon "1" --> "2" NodoPokemon
 ListaPokemon o-- NodoPokemon
-SistemaPokedexImpl ..|> SistemaPokedex
-SistemaPokedexImpl --> ListaPokemon
+SistemaPokedexImpl "implements" ..|> SistemaPokedex
+SistemaPokedexImpl "1" --> "1" ListaPokemon
 NodoPokemon --> Pokemon
 
 
