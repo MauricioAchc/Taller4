@@ -56,6 +56,39 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return listaPokemon;
     }
 
+    @Override
+    public String[] obtenerPokemonNombre(String nombre) {
+
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            try{
+                Pokemon pokemoni = this.listaPokemon.obtenerPokemon(i);
+                if (pokemoni != null && pokemoni.getNombre().equalsIgnoreCase(nombre)){
+                    listaPokemon[i] = pokemoni.toString();
+                }
+            }catch (Exception E){
+                continue;
+            }
+        }
+        return listaPokemon;
+    }
+
+    @Override
+    public String[] obtenerPokemonId(int id) {
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            try{
+                Pokemon pokemoni = this.listaPokemon.obtenerPokemon(i);
+                if (pokemoni != null && pokemoni.getId() == id){
+                    listaPokemon[i] = pokemoni.toString();
+                }
+            }catch (Exception E){
+                continue;
+            }
+        }
+        return listaPokemon;
+    }
+
     public Pokemon busquedaPersonalizada(){
         return null;
     }

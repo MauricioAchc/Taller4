@@ -68,6 +68,7 @@ public class Main {
                 case 2 -> desplegarPokemonDelSistemaAlfabeticamente(sistema);
                 case 3 -> desplegarPokemonSegunDadoTipo(sistema);
                 case 4 -> desplegarPokemonPrimeraEvolucion(sistema);
+                case 5 -> subMenubusquedaPersonalizada(sistema);
                 case 6 ->salir(sistema);
             }
         }
@@ -136,8 +137,9 @@ public class Main {
 
         while(opcionInt != 2){
             StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
-            StdOut.println("[1] Buscar Pokemon por nombre o id.");
-            StdOut.println("[2] Volver al menú anterior.");
+            StdOut.println("[1] Buscar Pokemon por nombre.");
+            StdOut.println("[2] Buscar Pokemon por id.");
+            StdOut.println("[3] Volver al menú anterior.");
             StdOut.print("Ingrese su opción: ");
             String opcionStr = StdIn.readLine();
 
@@ -159,11 +161,43 @@ public class Main {
             }
 
             switch (opcionInt) {
-                case 1 -> busquedaPersonalizada(sistema);
-                case 2 -> StdOut.println("\nVolviendo al menú anterior...\n");
+                case 1 -> obtenerPokemonNombre(sistema);
+                case 2 -> obtenerPokemonId(sistema);
+                case 3 -> StdOut.println("\nVolviendo al menú anterior...\n");
             }
         }
     }
+
+    public static void obtenerPokemonNombre(SistemaPokedex sistema){
+
+        StdOut.println("Escriba el nombre del pokémon a buscar: ");
+        String nombre = StdIn.readLine();
+
+        String[] pokemons = sistema.obtenerPokemonNombre(nombre);
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
+    }
+
+    public static void obtenerPokemonId(SistemaPokedex sistema){
+
+        StdOut.println("Escriba el id del pokémon a buscar: ");
+        String id = StdIn.readLine();
+
+        String[] pokemons = sistema.obtenerPokemonId(Integer.parseInt(id));
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
+    }
+
 
     public static void busquedaPersonalizada(SistemaPokedex sistema){
     }

@@ -72,4 +72,11 @@ public class Pokemon {
     public void setTipo2(String tipo2) {
         this.tipo2 = tipo2;
     }
+
+    public String toString(){
+        return "Id:"+this.id+"\nNombre: "+this.nombre+"\nEtapa: "+this.etapa+ "\nEvolución siguiente: "+
+                this.evolucionSiguiente+"\nEvolución previa: "+this.evolucionPrevia+"\nTipo1: "+
+                this.tipo1+"\nTipo2: "+this.tipo2;
+
+    }
 }
