@@ -24,6 +24,7 @@ class NodoPokemon{
 
 class ListaPokemon{
 -cabeza: NodoPokemon
+-cantPokemons : int
 +ListaPokemon()
 +get´s()
 +set´s()

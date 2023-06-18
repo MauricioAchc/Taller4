@@ -13,6 +13,14 @@ public class Main {
         menuPrincipal(sistema);
     }
 
+
+    //region LECTURA DE ARCHIVOS.
+
+    /**
+     * Subprograma para cargar y leer el archivo para guardarlo en la ListaInstrumento.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     * @throws IOException Detiene la carga/escritura  del archivo si ocurre algun error.
+     */
     public static void cargarPokemons(SistemaPokedex sistema) throws IOException{
         ArchivoEntrada archivoEntrada = new ArchivoEntrada("kanto.txt");
         while(!archivoEntrada.isEndFile()){
@@ -29,6 +37,13 @@ public class Main {
         archivoEntrada.close();
     }
 
+
+
+    /**
+     * Subprograma que lleva al menu principal al usuario.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     * @throws IOException Detiene la carga/escritura  del archivo si ocurre algun error.
+     */
     public static void menuPrincipal(SistemaPokedex sistema) throws  IOException{
         int menu = 0;
 
@@ -74,6 +89,12 @@ public class Main {
         }
     }
 
+
+    /**
+     * Subprograma que permite el despliegue de los pokemons ordenados según el rango.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
+
     public static  void desplegarPokemonOrdenadoSegunRango(SistemaPokedex sistema){
 
         StdOut.println("Ingrese el rango de inicio: ");
@@ -93,6 +114,11 @@ public class Main {
         }
     }
 
+
+    /**
+     * Subprograma que permite el despliegue de los pokemons ordenados alfabeticamente.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static  void desplegarPokemonDelSistemaAlfabeticamente(SistemaPokedex sistema){
 
         String[] pokemons = sistema.desplegarPokemonAlfabetico();
@@ -105,6 +131,11 @@ public class Main {
         }
     }
 
+
+    /**
+     * Subprograma que permite el despliegue de los pokemons segun el tipo de este.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static  void desplegarPokemonSegunDadoTipo(SistemaPokedex sistema){
         StdOut.println("Escriba el tipo del pokémon a buscar: ");
         String tipo = StdIn.readLine();
@@ -120,6 +151,11 @@ public class Main {
 
     }
 
+    /**
+     * Subprograma que permite el despliegue de los pokemons en su primera evolución.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
+
     public static  void desplegarPokemonPrimeraEvolucion(SistemaPokedex sistema){
 
         String[] pokemons = sistema.desplegarPokemonPrimeraEvolucion();
@@ -132,6 +168,10 @@ public class Main {
         }
     }
 
+    /**
+     * Subprograma que lleva al submenu de busqueda personalizada lo que permite el despliegue de los pokemons según el nombre o id.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static void subMenubusquedaPersonalizada(SistemaPokedex sistema){
         int opcionInt = 0;
 
@@ -168,6 +208,11 @@ public class Main {
         }
     }
 
+
+    /**
+     * Subprograma que permite obtener los nombres de los pokemons.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static void obtenerPokemonNombre(SistemaPokedex sistema){
 
         StdOut.println("Escriba el nombre del pokémon a buscar: ");
@@ -216,6 +261,12 @@ public class Main {
 
     }
 
+
+
+    /**
+     * Subprograma que permite obtener los id de los pokemons y lleva a un submenu para desplegar las evoluciones de estos.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static void obtenerPokemonId(SistemaPokedex sistema){
 
 
@@ -269,6 +320,10 @@ public class Main {
     }
 
 
+    /**
+     * Subprograma que permite desplegar la información sobre la evolución siguiente del pokemon.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static void desplegarInformacionSobreEvolucionSiguiente(SistemaPokedex sistema){
 
         String[] pokemons = sistema.desplegarSegundaEvolucion();
@@ -282,6 +337,11 @@ public class Main {
 
     }
 
+
+    /**
+     * Subprograma que salir del sistema.
+     * @param sistema Corresponde al llamamiento al SistemaPokedexImpl.
+     */
     public static void salir(SistemaPokedex sistema) throws  IOException{
     }
 }
