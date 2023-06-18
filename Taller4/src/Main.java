@@ -206,7 +206,10 @@ public class Main {
                     opcionStr = StdIn.readString();
                 }
             }
-
+            switch (opcionInt) {
+                case 0 -> desplegarInformacionSobreEvolucionSiguiente(sistema);
+                case 1 -> StdOut.println("\nVolviendo al menú anterior...\n");
+            }
 
         }
 
@@ -253,9 +256,9 @@ public class Main {
                     opcionStr = StdIn.readString();
                 }
             }
-
-            switch (opcionInt) {
-                case 1 -> desplegarInformacionSobreEvolucionSiguiente(sistema);
+            if (opcionInt == 0){
+                sistema.desplegarPokemonPrimeraEvolucion();
+                sistema.desplegarSegundaEvolucion();
             }
         }
 
