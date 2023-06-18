@@ -135,7 +135,7 @@ public class Main {
     public static void subMenubusquedaPersonalizada(SistemaPokedex sistema){
         int opcionInt = 0;
 
-        while(opcionInt != 2){
+        while(opcionInt != 3){
             StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
             StdOut.println("[1] Buscar Pokemon por nombre.");
             StdOut.println("[2] Buscar Pokemon por id.");
@@ -146,7 +146,7 @@ public class Main {
             while (true){
                 try{
                     opcionInt = Integer.parseInt(opcionStr);
-                    if ( 1 <= opcionInt && opcionInt <= 2){
+                    if ( 1 <= opcionInt && opcionInt <= 3){
                         break;
                     }else{
                         StdOut.println("Error, la opción ingresada no existe");
@@ -181,9 +181,40 @@ public class Main {
                 StdOut.println(pokemons[i]);
             }
         }
+
+        int opcionInt = 0;
+
+        while(opcionInt != 1){
+            StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
+            StdOut.println("¿desplegar información sobre una de sus evoluciones?.");
+            StdOut.print("Ingrese su opción si(igual a 0), no(igual a 1): ");
+            String opcionStr = StdIn.readLine();
+
+            while (true){
+                try{
+                    opcionInt = Integer.parseInt(opcionStr);
+                    if ( 0 <= opcionInt && opcionInt <= 1){
+                        break;
+                    }else{
+                        StdOut.println("Error, la opción ingresada no existe");
+                        StdOut.print("Ingrese su opción nuevamente: ");
+                        opcionStr = StdIn.readString();
+                    }
+                }catch(Exception e){
+                    StdOut.println("Error, la opción ingresada no existe");
+                    StdOut.print("Ingrese su opción nuevamente: ");
+                    opcionStr = StdIn.readString();
+                }
+            }
+
+
+        }
+
+
     }
 
     public static void obtenerPokemonId(SistemaPokedex sistema){
+
 
         StdOut.println("Escriba el id del pokémon a buscar: ");
         String id = StdIn.readLine();
@@ -196,10 +227,56 @@ public class Main {
                 StdOut.println(pokemons[i]);
             }
         }
+
+
+        int opcionInt = 0;
+
+        while(opcionInt != 1){
+            StdOut.println("--------->Menu para búsquedas personalizadas<---------- ");
+            StdOut.println("¿Quieres desplegar información sobre una de sus evoluciones?.");
+            StdOut.print("Ingrese su opción si(igual a 0), no(igual a 1): ");
+            String opcionStr = StdIn.readLine();
+
+            while (true){
+                try{
+                    opcionInt = Integer.parseInt(opcionStr);
+                    if ( 0 <= opcionInt && opcionInt <= 1){
+                        break;
+                    }else{
+                        StdOut.println("Error, la opción ingresada no existe");
+                        StdOut.print("Ingrese su opción nuevamente: ");
+                        opcionStr = StdIn.readString();
+                    }
+                }catch(Exception e){
+                    StdOut.println("Error, la opción ingresada no existe");
+                    StdOut.print("Ingrese su opción nuevamente: ");
+                    opcionStr = StdIn.readString();
+                }
+            }
+
+            switch (opcionInt) {
+                case 1 -> desplegarInformacionSobreEvolucionSiguiente(sistema);
+            }
+        }
+
+
+
+
+
     }
 
 
-    public static void busquedaPersonalizada(SistemaPokedex sistema){
+    public static void desplegarInformacionSobreEvolucionSiguiente(SistemaPokedex sistema){
+
+        String[] pokemons = sistema.desplegarSegundaEvolucion();
+        if(pokemons == null || pokemons.length == 0){
+            StdOut.println("No hay pokémons en el sistema");
+        }else{
+            for (int i = 0; i < pokemons.length; i++) {
+                StdOut.println(pokemons[i]);
+            }
+        }
+
     }
 
     public static void salir(SistemaPokedex sistema) throws  IOException{

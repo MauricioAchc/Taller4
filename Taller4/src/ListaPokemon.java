@@ -117,6 +117,9 @@ public class ListaPokemon {
         return false;
     }
 
+
+
+
     public NodoPokemon getCabeza() {
         return cabeza;
     }

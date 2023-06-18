@@ -56,6 +56,19 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return listaPokemon;
     }
 
+    public String[] desplegarSegundaEvolucion(){
+        this.listaPokemon.ordenarPokemons();
+        String[] listaPokemon = new String[this.listaPokemon.getCantPokemons()];
+        for (int i = 0; i < this.listaPokemon.getCantPokemons(); i++) {
+            if (this.listaPokemon.obtenerPokemon(i).getEvolucionSiguiente().equalsIgnoreCase("Segunda Evolucion")){
+                listaPokemon[i] = this.listaPokemon.obtenerPokemon(i).getNombre();
+            }
+        }
+        return listaPokemon;
+
+
+    }
+
     @Override
     public String[] obtenerPokemonNombre(String nombre) {
 
@@ -92,6 +105,8 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
     public Pokemon busquedaPersonalizada(){
         return null;
     }
+
+
 
     public void salirMenuPrincipal(){
     }

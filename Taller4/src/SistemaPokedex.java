@@ -5,6 +5,7 @@ public interface SistemaPokedex {
     public String[] desplegarPokemonAlfabetico();
     public String[] desplegarPokemonDadoTipo(String tipo);
     public String[] desplegarPokemonPrimeraEvolucion();
+    public String[] desplegarSegundaEvolucion();
     public String[] obtenerPokemonNombre(String nombre);
     public String[] obtenerPokemonId(int id);
     public Pokemon busquedaPersonalizada();
