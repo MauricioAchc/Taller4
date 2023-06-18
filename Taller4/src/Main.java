@@ -81,7 +81,7 @@ public class Main {
                 case 3 -> desplegarPokemonSegunDadoTipo(sistema);
                 case 4 -> desplegarPokemonPrimeraEvolucion(sistema);
                 case 5 -> subMenubusquedaPersonalizada(sistema);
-                case 6 ->salir();
+                case 6 ->salir(sistema);
             }
         }
     }
@@ -256,7 +256,7 @@ public class Main {
     /**
      * Subprograma que salir del sistema.
      */
-    public static void salir(){
-        StdOut.println("Apagando pokedex...Hasta Pronto!");
+    public static void salir(SistemaPokedex sistema){
+        sistema.salir();
     }
 }

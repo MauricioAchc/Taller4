@@ -165,6 +165,10 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
         return false;
     }
 
+    /**
+     * Método que permite ver si existe un pokemon en el sistema.
+     * @param tipo Corresponde al tipo del pokemon.
+     */
     @Override
     public boolean existepokemonTipo(String tipo) {
 
@@ -174,5 +178,13 @@ public class SistemaPokedexImpl implements  SistemaPokedex{
             }
         }
         return false;
+    }
+
+    /**
+     * Método que permite salir del sistema.
+     */
+    @Override
+    public void salir() {
+        StdOut.println("Apagando pokedex...Hasta Pronto!");
     }
 }

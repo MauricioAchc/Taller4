@@ -47,6 +47,7 @@ interface SistemaPokedex{
 +existepokemonNombre(nombre: String): boolean
 +existepokemonId(id: int): boolean
 +existepokemonTipo(tipo: String): boolean
++salir(): void
 }
 
 class SistemaPokedexImpl{

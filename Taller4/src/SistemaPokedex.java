@@ -39,11 +39,6 @@ public interface SistemaPokedex {
     public String[] desplegarPokemonPrimeraEvolucion();
 
     /**
-     * Método que despliega los pokemons del sistema en su segunda evolución.
-     * @return "listaPokemon".
-     */
-
-    /**
      * Método que obtiene los nombres de los pokemons del sistema.
      * @param nombre Corresponde al nombre de los pokemons.
      * @return "listaPokemon".
@@ -74,4 +69,9 @@ public interface SistemaPokedex {
      * @param tipo Corresponde al tipo del pokemon.
      */
     public boolean existepokemonTipo(String tipo);
+
+    /**
+     * Método que permite salir del sistema.
+     */
+    public void salir();
 }
